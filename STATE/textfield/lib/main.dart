@@ -65,6 +65,7 @@ class _FormExampleState extends State<FormExample> {
           SizedBox(height: 16),
           TextFormField(
             controller: _emailController,
+            obscureText: true,
             decoration: InputDecoration(
               labelText: 'Email',
               border: OutlineInputBorder(),
