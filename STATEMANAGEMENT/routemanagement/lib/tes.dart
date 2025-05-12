@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/instance_manager.dart';
 
 void main(List<String> args) {
   runApp(
     GetMaterialApp(
-      initialRoute: '',
+      initialRoute: '/',
       getPages: [
         GetPage(name: '/', page: () => First()),
-        GetPage(name: '/', page: () => Second()),
+        GetPage(name: '/second', page: () => Second()),
       ],
     ),
   );
@@ -43,7 +44,7 @@ class Second extends StatelessWidget {
           onPressed: () {
             Get.back();
           },
-          child: Text(""),
+          child: Text("back"),
         ),
       ),
     );
