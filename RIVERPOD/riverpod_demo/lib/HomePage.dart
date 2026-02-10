@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_demo/ThemePage.dart';
 
 final greetingProvider = Provider<String>((ref) => "Hello Riverpod");
 final counterProvider = StateProvider<int>((ref) => 0);
@@ -20,6 +21,13 @@ class HomePage extends ConsumerWidget {
             Text(greeting),
             SizedBox(height: 10),
             Text("Counter:$counter"),
+            ElevatedButton(
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ThemePage()),
+              ),
+              child: Text('Go'),
+            ),
           ],
         ),
       ),
