@@ -12,11 +12,20 @@ class HomePage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Async Scaffold')),
       body: postsAsync.when(
-        data: (data) => ListView.builder(
-          itemBuilder: (context, index) {
-            final post = data[index];
-            return ListTile(title: Text(post.title), subtitle: Text(post.body));
+        data: (data) => RefreshIndicator(
+          onRefresh: () async {
+            ref.invalidate(postsProvider);
           },
+          child: ListView.builder(
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              final post = data[index];
+              return ListTile(
+                title: Text(post.title),
+                subtitle: Text(post.body),
+              );
+            },
+          ),
         ),
         error: (error, stackTrace) => Center(child: Text("Error:$error")),
         loading: () => Center(child: CircularProgressIndicator()),

@@ -7,7 +7,9 @@ import 'package:http/http.dart' as http;
 final postsProvider = FutureProvider<List<Post>>((ref) async {
   final response = await http.get(
     Uri.parse("https://jsonplaceholder.typicode.com/posts"),
+    headers: {"Accept": "application/json"},
   );
+  print("Status: ${response.statusCode}");
 
   if (response.statusCode == 200) {
     final List data = jsonDecode(response.body);
