@@ -10,17 +10,16 @@ class HomePage extends ConsumerWidget {
     final postsAsync = ref.watch(postsProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Level 2 - Posts")),
+      appBar: AppBar(title: Text('Async Scaffold')),
       body: postsAsync.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Center(child: Text("Error: $err")),
-        data: (posts) => ListView.builder(
-          itemCount: posts.length,
+        data: (data) => ListView.builder(
           itemBuilder: (context, index) {
-            final post = posts[index];
+            final post = data[index];
             return ListTile(title: Text(post.title), subtitle: Text(post.body));
           },
         ),
+        error: (error, stackTrace) => Center(child: Text("Error:$error")),
+        loading: () => Center(child: CircularProgressIndicator()),
       ),
     );
   }
