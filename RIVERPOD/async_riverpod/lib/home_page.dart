@@ -7,27 +7,22 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final postsAsync = ref.watch(postsProvider);
+    final postAsync = ref.watch(getPostsProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Async Scaffold')),
-      body: postsAsync.when(
-        data: (data) => RefreshIndicator(
-          onRefresh: () async {
-            ref.invalidate(postsProvider);
+      appBar: AppBar(
+        title: Text("Async Riverpod"),
+        automaticallyImplyActions: false,
+      ),
+      body: postAsync.when(
+        data: (data) => ListView.builder(
+          itemCount: data.length,
+          itemBuilder: (context, index) {
+            final post = data[index];
+            return ListTile(title: Text(post.title), subtitle: Text(post.body));
           },
-          child: ListView.builder(
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              final post = data[index];
-              return ListTile(
-                title: Text(post.title),
-                subtitle: Text(post.body),
-              );
-            },
-          ),
         ),
-        error: (error, stackTrace) => Center(child: Text("Error:$error")),
+        error: (error, stackTrace) => Center(child: Text("error:$error")),
         loading: () => Center(child: CircularProgressIndicator()),
       ),
     );
