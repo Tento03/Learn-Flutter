@@ -20,7 +20,7 @@ final getPostsProvider = FutureProvider<List<Post>>((ref) async {
 
 final getDetailPostsProvider = FutureProvider.family((ref, id) async {
   final response = await http.get(
-    Uri.parse("https://jsonplaceholder.typicode.com/posts"),
+    Uri.parse("https://jsonplaceholder.typicode.com/posts/$id"),
     headers: {"Accept": "application/json"},
   );
 
