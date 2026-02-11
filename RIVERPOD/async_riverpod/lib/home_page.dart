@@ -7,22 +7,21 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final postAsync = ref.watch(postsProvider);
+    final postsAsync = ref.watch(postsProvider);
 
-    return postAsync.when(
-      data: (posts) => RefreshIndicator(
-        onRefresh: () async {
-          ref.invalidate(postsProvider);
-        },
-        child: ListView.builder(
+    return Scaffold(
+      appBar: AppBar(title: const Text("Level 2 - Posts")),
+      body: postsAsync.when(
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (err, stack) => Center(child: Text("Error: $err")),
+        data: (posts) => ListView.builder(
+          itemCount: posts.length,
           itemBuilder: (context, index) {
             final post = posts[index];
             return ListTile(title: Text(post.title), subtitle: Text(post.body));
           },
         ),
       ),
-      error: (error, stackTrace) => Center(child: Text("Error:$error")),
-      loading: () => Center(child: CircularProgressIndicator()),
     );
   }
 }
