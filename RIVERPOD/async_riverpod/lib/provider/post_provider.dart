@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:async_riverpod/model/post_model.dart';
+import 'package:async_riverpod/notifier/post_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:http/http.dart' as http;
 
 final getPostsProvider = FutureProvider<List<Post>>((ref) async {
@@ -31,3 +33,8 @@ final getDetailPostsProvider = FutureProvider.family((ref, id) async {
     throw Exception("Failed to load detail");
   }
 });
+
+final postNotifierProvider =
+    StateNotifierProvider<PostNotifier, AsyncValue<void>>(
+      (ref) => PostNotifier(),
+    );

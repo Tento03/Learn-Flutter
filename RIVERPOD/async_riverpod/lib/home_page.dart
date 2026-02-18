@@ -1,6 +1,5 @@
-import 'package:async_riverpod/ui/GetAllPage.dart';
-import 'package:async_riverpod/ui/GetDetailPage.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,18 +13,18 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => GetAllPage()),
-              ),
+              onPressed: () => context.push("/get-all"),
               child: Text("Get All"),
             ),
+            SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => GetDetailPage(id: 1)),
-              ),
+              onPressed: () => context.push("/detail/1"),
               child: Text("Get Detail"),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () => context.push("/create"),
+              child: Text("Create"),
             ),
           ],
         ),

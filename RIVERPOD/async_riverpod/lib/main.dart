@@ -1,4 +1,4 @@
-import 'package:async_riverpod/home_page.dart';
+import 'package:async_riverpod/router/app_router.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,6 +12,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Async Riverpod', home: HomePage());
+    return MaterialApp.router(title: "Async Riverpod", routerConfig: router);
   }
 }
