@@ -38,3 +38,8 @@ final postNotifierProvider =
     StateNotifierProvider<PostNotifier, AsyncValue<void>>(
       (ref) => PostNotifier(),
     );
+
+final deletePostNotifierProvider =
+    StateNotifierProvider<PostNotifier, AsyncValue<void>>(
+      (ref) => PostNotifier(),
+    );

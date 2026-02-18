@@ -46,4 +46,22 @@ class PostNotifier extends StateNotifier<AsyncValue<void>> {
       state = AsyncError(e, s);
     }
   }
+
+  Future<void> deletePost(int id) async {
+    state = AsyncLoading();
+
+    try {
+      final response = await http.delete(
+        Uri.parse("https://jsonplaceholder.typicode.com/posts/$id"),
+      );
+
+      if (response.statusCode == 200) {
+        state = AsyncData(null);
+      } else {
+        throw Exception("Gagal delete");
+      }
+    } catch (e, s) {
+      state = AsyncError(e, s);
+    }
+  }
 }
