@@ -26,6 +26,11 @@ class HomePage extends StatelessWidget {
               onPressed: () => context.push("/create"),
               child: Text("Create"),
             ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () => context.push("/update/1"),
+              child: Text("Update"),
+            ),
           ],
         ),
       ),
